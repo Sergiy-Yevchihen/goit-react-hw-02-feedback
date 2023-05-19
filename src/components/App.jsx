@@ -1,11 +1,9 @@
-
-// 
 import React, { Component } from 'react';
-// import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
-// import { GlobalStyle } from './GlobalStyle';
-// import { Layout } from './Layout/Layout';
- import { Section } from './Section/Section';
-// import { Statistics } from './Statistics/Statistics';
+import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
+import { GlobalStyle } from './GlobalStyle';
+import { Layout } from './Layout/Layout';
+import { Section } from './Section/Section';
+import { Statistics } from './Statistics/Statistics';
 
 export class App extends Component {
   state = {
@@ -27,28 +25,26 @@ export class App extends Component {
   render() {
     const { good, neutral, bad } = this.state;
     return (
-      
       <Layout>
-         <Section title="Please leave feedback">     
+        <Section title="Please leave feedback">
+          <FeedbackOptions
+            options={Object.keys(this.state)}
+            onLeaveFeedback={this.leaveFeedback}
+          />
+        </Section>
+        <Section title="Statistics">
+          <Statistics
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={this.countTotalFeedback(this.state)}
+            positivePercentage={this.countPositiveFeedbackPercentage(
+              this.state
+            )}
+          ></Statistics>
+        </Section>
+        <GlobalStyle />
       </Layout>
-      //     <FeedbackOptions
-      //       options={Object.keys(this.state)}
-      //       onLeaveFeedback={this.leaveFeedback}
-      //     />
-      //   </Section>
-      //   <Section title="Statistics">
-      //     <Statistics
-      //       good={good}
-      //       neutral={neutral}
-      //       bad={bad}
-      //       total={this.countTotalFeedback(this.state)}
-      //       positivePercentage={this.countPositiveFeedbackPercentage(
-      //         this.state
-      //       )}
-      //     ></Statistics>
-      //   </Section>
-      //   <GlobalStyle />
-       
     );
   }
 }

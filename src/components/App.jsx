@@ -13,7 +13,6 @@ export class App extends Component {
   };
 
   leaveFeedback = e => {
-    //console.log(e); // good
     this.setState({ [e]: this.state[e] + 1 });
   };
 
